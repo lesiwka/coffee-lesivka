@@ -29,7 +29,7 @@ ORDER = [
 CYR = 'АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ' + ACUTE + APOSTROPHES
 
 convert = applier(ORDER...)
-split = new RegExp("([^\\w#{withLowerCase(CYR)}]+)", 'u')
+split = new RegExp("([^\\w\u{0400}-\u{04ff}#{ACUTE}#{APOSTROPHES}]+)", 'u')
 encoder = new Converter(split, CYR, convert)
 
 export encode = (text) ->

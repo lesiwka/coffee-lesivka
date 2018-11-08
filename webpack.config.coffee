@@ -17,6 +17,23 @@ webConfig =
     library: 'lesivka'
     libraryTarget: 'var'
 
+chromeConfig =
+  target: 'web'
+  mode: 'production'
+  module:
+    rules: [
+      {
+        test: /\.coffee$/
+        use: ['coffee-loader']
+      }
+    ]
+  entry: './src/encode.coffee'
+  output:
+    path: path.resolve(__dirname, 'dist')
+    filename: 'lesivka.encode.js'
+    library: 'lesivka'
+    libraryTarget: 'var'
+
 nodeConfig =
   target: 'node'
   mode: 'development'
@@ -34,4 +51,4 @@ nodeConfig =
     libraryTarget: 'commonjs'
 
 
-module.exports = [webConfig, nodeConfig]
+module.exports = [webConfig, chromeConfig, nodeConfig]

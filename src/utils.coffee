@@ -68,7 +68,7 @@ getWordCls = (valid, action) ->
       return null
 
     isUpper: ->
-      return @word.toUpperCase() == @word
+      return @word.length > 0 and @word.toUpperCase() == @word
 
     isTitle: ->
       if @word.toLowerCase() == @word.toUpperCase()

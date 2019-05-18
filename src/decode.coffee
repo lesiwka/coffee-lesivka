@@ -31,7 +31,7 @@ ORDER = [
 LAT = 'ABCČDĐEFGHIJKLMNOPRSŠTUVXZŽƵ' + ACUTE + CARON + 'ĆĹŃŔŚŹǴḰḾṔ'
 
 convert = applier(ORDER...)
-split = new RegExp("([^\\w#{withLowerCase(LAT)}]+)", 'u')
+split = new RegExp("([^\\w#{withLowerCase(LAT)}]+)")
 decoder = new Converter(split, LAT, convert)
 
 export decode = (text) ->

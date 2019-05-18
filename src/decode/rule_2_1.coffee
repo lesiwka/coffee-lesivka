@@ -33,9 +33,9 @@ getStep3 = ->
   data = prep_data(IN, OUT)
 
   return (text) ->
-    for k, v of data
-      if text.startsWith(k)
-        return v + text[k.length..]
+    for i, o of data
+      if text[0] == i
+        return o + text[1..]
     return text
 
 

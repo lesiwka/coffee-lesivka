@@ -1,5 +1,5 @@
 import {ACUTE} from '../diacritics.coffee'
-import {applier, prep_data, replacer, withLowerCase} from '../utils.coffee'
+import {applier, prep_data, repeat, replacer, withLowerCase} from '../utils.coffee'
 
 IN = 'І'
 OUT = 'I'
@@ -7,7 +7,7 @@ AFTER = 'AEIOU' + ACUTE
 
 
 getStep2 = ->
-  output = OUT.repeat(AFTER.length) + OUT.toLowerCase().repeat(AFTER.length)
+  output = repeat(OUT, AFTER.length) + repeat(OUT.toLowerCase(), AFTER.length)
 
   data = {}
   for c, i in withLowerCase(AFTER)

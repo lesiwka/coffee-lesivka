@@ -7,7 +7,12 @@ webConfig =
     rules: [
       {
         test: /\.coffee$/
-        use: ['coffee-loader']
+        use: [
+          loader: 'coffee-loader',
+          options:
+            transpile:
+              presets: ['env']
+        ]
       }
     ]
   entry: './src/lesivka.coffee'

@@ -11,7 +11,7 @@ webConfig =
           loader: 'coffee-loader',
           options:
             transpile:
-              presets: ['env']
+              presets: ['@babel/preset-env']
         ]
       }
     ]

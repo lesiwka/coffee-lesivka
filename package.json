@@ -7,8 +7,8 @@
     "mocha-param": "*",
     "webpack": "*",
     "webpack-cli": "*",
-    "babel-core": "*",
-    "babel-preset-env": "*"
+    "@babel/core": "*",
+    "@babel/preset-env": "*"
   },
   "scripts": {
     "build": "./node_modules/.bin/webpack-cli",

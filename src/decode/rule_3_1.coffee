@@ -1,13 +1,14 @@
 import {replacer, withLowerCase} from '../utils.coffee'
 
 AFTER = 'BVHGDZKLMNPRSTFXC' + 'ŽČŠ'
-
+BEFORE = 'AEIU'
 
 getConvert = ->
   data = {}
-  for c in withLowerCase(AFTER)
-    data[c + 'J'] = c + "'" + 'J'
-    data[c + 'j'] = c + "'" + 'j'
+  for x in withLowerCase(AFTER)
+    for y in 'Jj'
+      for z in withLowerCase(BEFORE)
+        data[x + y + z] = x + "'" + y + z
 
   return replacer(data)
 

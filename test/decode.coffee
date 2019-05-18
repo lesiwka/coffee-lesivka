@@ -57,6 +57,7 @@ data = [
   ['Nad-Ja', 'Над-Я'],
   ['MakKuin', 'МакКуін'],
   ['Mjač', "М'яч"],
+  ['vjo', 'вйо'],
 ]
 
 describe 'decode', ->

@@ -3,7 +3,7 @@ import {applier, prep_data, repeat, replacer, withLowerCase} from '../utils.coff
 
 IN = 'І'
 OUT = 'I'
-AFTER = 'AEIOU' + ACUTE
+AFTER = 'AEIOUJ' + ACUTE
 
 
 getStep2 = ->

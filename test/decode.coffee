@@ -58,6 +58,7 @@ data = [
   ['MakKuin', 'МакКуін'],
   ['Mjač', "М'яч"],
   ['vjo', 'вйо'],
+  ['ĹON', 'ЛЬОН'],
 ]
 
 describe 'decode', ->

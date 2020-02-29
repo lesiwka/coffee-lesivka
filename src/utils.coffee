@@ -35,7 +35,7 @@ getWordCls = (valid, action) ->
       n = @getNext()
       w = action(@word)
 
-      if @isUpper() and (p? and p.check() and p.isUpper() or n? and n.check() and n.isUpper())
+      if @isUpper() and ((p? and p.check() and p.isUpper() or n? and n.check() and n.isUpper()) or (!p? and !n?))
         return w.toUpperCase()
 
       if w and @isTitle()

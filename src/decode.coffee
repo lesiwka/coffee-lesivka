@@ -1,5 +1,6 @@
 import {ACUTE, CARON} from './diacritics.coffee'
 import {Converter, applier, withLowerCase} from './utils.coffee'
+import {convert as postprocess} from './decode/postprocess.coffee'
 import {convert as preprocess} from './decode/preprocess.coffee'
 import {convert as rule_1_1} from './decode/rule_1_1.coffee'
 import {convert as rule_1_2} from './decode/rule_1_2.coffee'
@@ -26,6 +27,7 @@ ORDER = [
   rule_1_4,
   rule_1_5,
   rule_3_2,
+  postprocess,
 ]
 
 LAT = 'ABCČDĐEFGHIJKLMNOPRSŠTUVXZŽƵ' + ACUTE + CARON + 'ĆĹŃŔŚŹǴḰḾṔ'

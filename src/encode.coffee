@@ -1,5 +1,6 @@
 import {ACUTE, APOSTROPHES, CARON} from './diacritics.coffee'
 import {Converter, applier, withLowerCase} from './utils.coffee'
+import {convert as postprocess} from './encode/postprocess.coffee'
 import {convert as rule_1_1} from './encode/rule_1_1.coffee'
 import {convert as rule_1_2} from './encode/rule_1_2.coffee'
 import {convert as rule_1_3} from './encode/rule_1_3.coffee'
@@ -24,6 +25,7 @@ ORDER = [
   rule_1_7,
   rule_2_1,
   rule_3_1,
+  postprocess,
 ]
 
 CYR = 'АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ' + ACUTE + APOSTROPHES

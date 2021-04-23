@@ -66,6 +66,10 @@ data = [
   ['Є ', 'Je '],
   ['Ь', ''],
   ['йі', 'ji'],
+  ["передзвонити", "pereƶvoniti"],
+  ["передзимовий", "peredzimovij"],
+  ["передз'їздівський", "peredzjizd́ivśkij"],
+  ["Укрінформ", "Ukrinform"],
 ]
 
 describe 'encode', ->

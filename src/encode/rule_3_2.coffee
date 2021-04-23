@@ -1,4 +1,4 @@
-import {replacer} from '../utils.coffee'
+import {prep_data_title, replacer} from '../utils.coffee'
 
 PREFIXES = [
   'ВІД',
@@ -16,20 +16,25 @@ REPLACE =
   'ДЖ': 'Đ'
   'ДЗ': 'Ƶ'
 
+EXCLUDES = [
+    "ПЕРЕДЗВЕН",
+    "ПЕРЕДЗВІН",
+    "ПЕРЕДЗВОН",
+    "ПЕРЕДЗИЖЧ",
+]
+
 
 getConvert = ->
-  data = {}
-  for i, o of REPLACE
-    data[i] = o
-    data[i[0].toUpperCase() + i[1..].toLowerCase()] = o
-    data[i.toLowerCase()] = o.toLowerCase()
-
-  repl = replacer(data)
+  repl = replacer(prep_data_title(REPLACE))
 
   return (text) ->
+    _text = text.toUpperCase()
     for prefix from PREFIXES
-      if text.toUpperCase()[..prefix.length-1] == prefix
-        return text[..prefix.length-1] + repl(text[prefix.length..])
+      if _text[...prefix.length] == prefix
+        for exclude from EXCLUDES
+          if _text[...exclude.length] == exclude
+            return repl(text)
+        return text[...prefix.length] + repl(text[prefix.length..])
 
     return repl(text)
 

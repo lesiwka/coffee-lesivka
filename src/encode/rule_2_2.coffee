@@ -1,12 +1,13 @@
 import {ACUTE} from '../diacritics.coffee'
 import {applier, prep_data, replacer, withLowerCase} from '../utils.coffee'
 
-IN = 'ЄЮЯ'
-OUT = 'EUA'
+IN = 'ЄЇЮЯ'
+OUT = 'EIUA'
 AFTER = 'БВГҐДЖЗКЛМНПРСТФХЦЧШЩ'
 
 TRANSLATE =
   'Є': 'JE'
+  'Ї': 'JI'  # rule_1_6
   'Ю': 'JU'
   'Я': 'JA'
 

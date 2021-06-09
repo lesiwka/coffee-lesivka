@@ -1,6 +1,6 @@
 import {translator, withLowerCase} from '../utils.coffee'
 
-IN = 'АЕИОУ'
-OUT = 'AEIOU'
+IN = 'АЕИІОУ'
+OUT = 'AEYIOU'
 
 export convert = translator(withLowerCase(IN), withLowerCase(OUT))

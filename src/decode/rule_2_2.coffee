@@ -3,11 +3,13 @@ import {applier, prep_data, prep_data_title, replacer} from '../utils.coffee'
 
 AREPLACE =
   "#{ACUTE}E": 'Є'
+  "#{ACUTE}I": 'Ї'
   "#{ACUTE}U": 'Ю'
   "#{ACUTE}A": 'Я'
 
 JREPLACE =
   'JE': 'Є'
+  'JY': 'Ї'
   'JU': 'Ю'
   'JA': 'Я'
 

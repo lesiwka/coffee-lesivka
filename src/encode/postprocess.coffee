@@ -1,7 +1,6 @@
-import {prep_data_title, replacer} from '../utils.coffee'
+import {ACUTE} from '../diacritics.coffee'
 
-EXCLUDES =
-  "UKŔINFORM": "UKRINFORM"
-
-
-export convert = replacer(prep_data_title(EXCLUDES))
+export convert = (text) ->
+    if text[0] == ACUTE
+      text = text[1..]
+    return text

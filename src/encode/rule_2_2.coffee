@@ -1,5 +1,5 @@
 import {ACUTE} from '../diacritics.coffee'
-import {applier, prep_data, replacer, withLowerCase} from '../utils.coffee'
+import {applier, prepData, replacer, withLowerCase} from '../utils.coffee'
 
 IN = 'ЄЇЮЯ'
 OUT = 'EIUA'

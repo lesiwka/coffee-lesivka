@@ -1,4 +1,4 @@
-import {prep_data_title, replacer} from '../utils.coffee'
+import {prepDataTitle, replacer} from '../utils.coffee'
 
 EXCLUDES =
   "БАТЮЩИН": "БАТЮШЧИН"
@@ -8,4 +8,4 @@ EXCLUDES =
   "МЕЛАЩИН": "МЕЛАШЧИН"
 
 
-export convert = replacer(prep_data_title(EXCLUDES))
+export convert = replacer(prepDataTitle(EXCLUDES))

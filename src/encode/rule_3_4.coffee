@@ -7,8 +7,17 @@ AFTER = ZERO_VOWEL + "AEYIOU"
 BEFORE = ZERO_CONSONANT + "BVHGDZKLMNPRSTFXCŽČŠĐƵ"
 
 
-addZeroLetters = (text) ->
-  return ZERO_VOWEL + text + ZERO_CONSONANT
+addZeroLetters = (word) ->
+  suffix = ZERO_CONSONANT
+
+  nextWord = word.getNext()
+  if nextWord?
+    if nextWord.word != ""
+      if BEFORE.indexOf(nextWord.word[0].toUpperCase()) is -1
+        suffix = ZERO_VOWEL
+
+  word.word = ZERO_VOWEL + word.word + suffix
+  return word
 
 
 getConvert = ->
@@ -20,12 +29,12 @@ getConvert = ->
   return replacer(data)
 
 
-stripZeroLetters = (text) ->
-  if text[0] == ZERO_VOWEL
-    text = text[1..]
-  if text[-1..] == ZERO_CONSONANT
-    text = text[...-1]
-  return text
+stripZeroLetters = (word) ->
+  if word.word[0] == ZERO_VOWEL
+    word.word = word.word[1..]
+  if word.word[-1..] == ZERO_CONSONANT | word.word[-1..] == ZERO_VOWEL
+    word.word = word.word[...-1]
+  return word
 
 
 export convert = applier(addZeroLetters, getConvert(), stripZeroLetters)

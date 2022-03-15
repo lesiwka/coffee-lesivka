@@ -10,11 +10,12 @@ BEFORE = ZERO_CONSONANT + "BVHGDZKLMNPRSTFXCŽČŠĐƵ"
 addZeroLetters = (word) ->
   suffix = ZERO_CONSONANT
 
-  nextWord = word.getNext()
-  if nextWord?
-    if nextWord.word != ""
-      if BEFORE.indexOf(nextWord.word[0].toUpperCase()) is -1
-        suffix = ZERO_VOWEL
+  if not word.hasStop()
+    nextWord = word.getNext()
+    if nextWord?
+      if nextWord.word != ""
+        if BEFORE.indexOf(nextWord.word[0].toUpperCase()) is -1
+          suffix = ZERO_VOWEL
 
   word.word = ZERO_VOWEL + word.word + suffix
   return word

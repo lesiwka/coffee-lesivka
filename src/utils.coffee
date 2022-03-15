@@ -51,20 +51,22 @@ getWordCls = (valid, action) ->
           checking.delete(c)
       return checking.size == 0
 
+    hasStop: ->
+      if @next?
+        return " -\u2010".indexOf(@next.word) is -1
+
     getNext: ->
       if @next?
         if @next.check()
             return @next
-        @next = @next.getNext()
-        return @next
+        return @next.getNext()
       return null
 
     getPrev: ->
       if @prev?
         if @prev.check()
             return @prev
-        @prev = @prev.getPrev()
-        return @prev
+        return @prev.getPrev()
       return null
 
     split: (separator) ->

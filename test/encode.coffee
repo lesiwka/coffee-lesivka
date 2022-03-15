@@ -77,6 +77,9 @@ data = [
   ["вйо", "vjo"],
   ["братів-українців", "brativ-ukrajinciw"],
   ["в Україну", "v Ukrajinu"],
+  ["удав, акула", "udaw, akula"],
+  ["удав акулі", "udav akuli"],
+  ["впав — упав", "wpaw — upaw"],
 ]
 
 describe 'encode', ->

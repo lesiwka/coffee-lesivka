@@ -54,7 +54,11 @@ getWordCls = (valid, action) ->
 
     hasStop: ->
       if @next?
-        return @next.word not in " -\u2010"
+        return @next.word[0] == "."
+
+    continues: ->
+      if @next?
+        return @next.word in " -\u2010"
 
     getNext: ->
       if @next?

@@ -10,7 +10,7 @@ BEFORE = ZERO_CONSONANT + "БВГҐДЖЗКЛМНПРСТФХЦЧШЩ"
 addZeroLetters = (word) ->
   suffix = ZERO_CONSONANT
 
-  if not word.hasStop()
+  if word.continues()
     nextWord = word.getNext()
     if nextWord?
       if nextWord.word != ""
@@ -27,7 +27,12 @@ getConvert = ->
     for b in withLowerCase(BEFORE)
       data[a + "в" + b] = a + "w" + b
       data[a + "В" + b] = a + "W" + b
-  return replacer(data)
+  repl = replacer(data)
+
+  return (word) ->
+    if word.abbr
+      return word
+    return repl(word)
 
 
 stripZeroLetters = (word) ->

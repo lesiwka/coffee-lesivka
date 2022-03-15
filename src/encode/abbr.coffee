@@ -154,25 +154,45 @@ ABBR = [
 ]
 
 ABBR_W_EXCLUDES =
-    "БВПД": "BWPD"
-    "ВВП": "VWP"
-    "ГУМВС": "HUMWS"
-    "ДВЗ": "DWZ"
-    "ЄАВТ": "JeAVT"
-    "ЄОВС": "JeOVS"
-    "МВС": "MWS"
-    "МВСУ": "MWSU"
-    "НКВД": "NKWD"
-    "НКВC": "NKWS"
-    "ПВЗВТ": "PWZVT"
-    "СВПД": "SWPD"
-    "СВР": "SWR"
-    "УМВС": "UMWS"
-    "УМВСУ": "UMWSU"
-    "УНКВД": "UNKWD"
-    "УНКВC": "UNKWS"
-    "ФГВФО": "FHWFO"
-    "ЦОВВ": "COVW"
+  "БВПД": "BWPD"
+  "ВВП": "VWP"
+  "ГУМВС": "HUMWS"
+  "ДВЗ": "DWZ"
+  "ЄАВТ": "JeAVT"
+  "ЄОВС": "JeOVS"
+  "МВС": "MWS"
+  "МВСУ": "MWSU"
+  "НКВД": "NKWD"
+  "НКВC": "NKWS"
+  "ПВЗВТ": "PWZVT"
+  "СВПД": "SWPD"
+  "СВР": "SWR"
+  "УМВС": "UMWS"
+  "УМВСУ": "UMWSU"
+  "УНКВД": "UNKWD"
+  "УНКВC": "UNKWS"
+  "ФГВФО": "FHWFO"
+  "ЦОВВ": "COVW"
+
+
+ABBR_W_DOT_EXCLUDES = [
+  "В",
+  "ГВ",
+  "ДИВ",
+  "ЗАВ",
+  "ЗВ",
+  "ІВ",
+  "ІНВ",
+  "КВ",
+  "ПЕРЕВ",
+  "ПОВ",
+  "ПРОВ",
+  "РОДОВ",
+  "СВ",
+  "СВВ",
+  "СЛОВ",
+  "ТОВ",
+]
 
 
 abbr = applier(
@@ -184,7 +204,9 @@ abbr = applier(
 
 
 export convert = (word) ->
-  if ABBR_W_EXCLUDES.hasOwnProperty(word.word)
+  if word.word.toUpperCase() in ABBR_W_DOT_EXCLUDES and word.hasStop()
+    word.abbr = true
+  else if ABBR_W_EXCLUDES.hasOwnProperty(word.word)
     word.word = ABBR_W_EXCLUDES[word.word]
     word.abbr = true
   else if word.word in ABBR

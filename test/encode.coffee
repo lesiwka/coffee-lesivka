@@ -83,6 +83,8 @@ data = [
   ["впав — упав", "wpaw — upaw"],
   ["ЮНІСЕФ", "JuNISEF"],
   ["ЦДЮТ", "CDJuT"],
+  ["ВВР", "VVR"],
+  ["ВВП", "VWP"],
 ]
 
 describe 'encode', ->

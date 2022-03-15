@@ -24,6 +24,7 @@ getWordCls = (valid, action) ->
 
   class Word
     constructor: (@word='', @prev=null, @next=null) ->
+      @abbr = false
       if @prev?
         @prev.next = @
 
@@ -36,7 +37,7 @@ getWordCls = (valid, action) ->
       n = @getNext()
       action(@)
 
-      if isUpper(orig) and (p? and p.check() and isUpper(p.word) or n? and n.check() and isUpper(n.word))
+      if isUpper(orig) and (p? and p.check() and isUpper(p.word) or n? and n.check() and isUpper(n.word)) and not @abbr
         return @word.toUpperCase()
 
       if @word and isTitle(orig)
@@ -53,7 +54,7 @@ getWordCls = (valid, action) ->
 
     hasStop: ->
       if @next?
-        return " -\u2010".indexOf(@next.word) is -1
+        return @next.word not in " -\u2010"
 
     getNext: ->
       if @next?
@@ -136,7 +137,7 @@ str = (x) ->
   return x.toString()
 
 
-toTitleCase = (text) ->
+export toTitleCase = (text) ->
   return (t[0].toUpperCase() + t[1..] for t in text.toLowerCase().split(' ')).join(' ')
 
 

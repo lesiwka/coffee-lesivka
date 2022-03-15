@@ -14,7 +14,7 @@ addZeroLetters = (word) ->
     nextWord = word.getNext()
     if nextWord?
       if nextWord.word != ""
-        if BEFORE.indexOf(nextWord.word[0].toUpperCase()) is -1
+        if nextWord.word[0].toUpperCase() not in BEFORE
           suffix = ZERO_VOWEL
 
   word.word = ZERO_VOWEL + word.word + suffix

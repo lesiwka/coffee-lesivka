@@ -1,5 +1,6 @@
 import {ACUTE, APOSTROPHES} from './diacritics.coffee'
 import {Converter, applier, withLowerCase} from './utils.coffee'
+import {convert as abbr} from './encode/abbr.coffee'
 import {convert as postprocess} from './encode/postprocess.coffee'
 import {convert as rule_1_1} from './encode/rule_1_1.coffee'
 import {convert as rule_1_2} from './encode/rule_1_2.coffee'
@@ -13,6 +14,7 @@ import {convert as rule_3_2} from './encode/rule_3_2.coffee'
 import {convert as rule_3_4} from './encode/rule_3_4.coffee'
 
 ORDER = [
+  abbr,
   rule_2_2,
   rule_3_2,
   rule_1_1,

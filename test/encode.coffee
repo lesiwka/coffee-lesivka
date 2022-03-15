@@ -81,6 +81,8 @@ data = [
   ["удав акулі", "udav akuli"],
   ["удав бабакові", "udaw babakovi"],
   ["впав — упав", "wpaw — upaw"],
+  ["ЮНІСЕФ", "JuNISEF"],
+  ["ЦДЮТ", "CDJuT"],
 ]
 
 describe 'encode', ->

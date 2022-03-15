@@ -4,7 +4,7 @@ ZERO_VOWEL = "\uee76"
 ZERO_CONSONANT = "\uff63"
 
 AFTER = ZERO_VOWEL + "AEYIOU"
-BEFORE = ZERO_CONSONANT + "БВГҐДЗКЛМНПРСТФХЦ"
+BEFORE = ZERO_CONSONANT + "БВГҐДЖЗКЛМНПРСТФХЦЧШЩ"
 
 
 addZeroLetters = (word) ->

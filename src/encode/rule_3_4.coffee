@@ -4,7 +4,7 @@ ZERO_VOWEL = "\uee76"
 ZERO_CONSONANT = "\uff63"
 
 AFTER = ZERO_VOWEL + "AEYIOU"
-BEFORE = ZERO_CONSONANT + "BVHGDZKLMNPRSTFXCŽČŠĐƵ"
+BEFORE = ZERO_CONSONANT + "БВГҐДЗКЛМНПРСТФХЦ"
 
 
 addZeroLetters = (word) ->
@@ -25,8 +25,8 @@ getConvert = ->
   data = {}
   for a in withLowerCase(AFTER)
     for b in withLowerCase(BEFORE)
-      data[a + "v" + b] = a + "w" + b
-      data[a + "V" + b] = a + "W" + b
+      data[a + "в" + b] = a + "w" + b
+      data[a + "В" + b] = a + "W" + b
   return replacer(data)
 
 

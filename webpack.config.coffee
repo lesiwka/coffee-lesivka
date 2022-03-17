@@ -15,11 +15,11 @@ webConfig =
         ]
       }
     ]
-  entry: './src/lesivka.coffee'
+  entry: './src/lesiwka.coffee'
   output:
     path: path.resolve(__dirname, 'dist')
-    filename: 'lesivka.js'
-    library: 'lesivka'
+    filename: 'lesiwka.js'
+    library: 'lesiwka'
     libraryTarget: 'var'
 
 chromeConfig =
@@ -35,8 +35,8 @@ chromeConfig =
   entry: './src/encode.coffee'
   output:
     path: path.resolve(__dirname, 'dist')
-    filename: 'lesivka.encode.js'
-    library: 'lesivka'
+    filename: 'lesiwka.encode.js'
+    library: 'lesiwka'
     libraryTarget: 'var'
 
 nodeConfig =
@@ -49,10 +49,10 @@ nodeConfig =
         use: ['coffee-loader']
       }
     ]
-  entry: './src/lesivka.coffee'
+  entry: './src/lesiwka.coffee'
   output:
     path: path.resolve(__dirname, 'dist')
-    filename: 'lesivka.node.js'
+    filename: 'lesiwka.node.js'
     libraryTarget: 'commonjs'
 
 

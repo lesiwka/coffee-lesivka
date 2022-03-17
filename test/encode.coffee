@@ -1,7 +1,7 @@
 assert = require('assert')
 itParam = require('mocha-param')
 
-lesivka = require('../dist/lesivka.node.js')
+lesiwka = require('../dist/lesiwka.node.js')
 
 data = [
   ['акула', 'akula'],
@@ -92,4 +92,4 @@ data = [
 
 describe 'encode', ->
   itParam '"${value[0]}" should be converted to "${value[1]}"', data, (value) ->
-    assert.equal lesivka.encode(value[0]), value[1]
+    assert.equal lesiwka.encode(value[0]), value[1]

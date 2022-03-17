@@ -1,5 +1,5 @@
 {
-  "main": "./src/lesivka.coffee",
+  "main": "./src/lesiwka.coffee",
   "devDependencies": {
     "coffeescript": ">2.0.0",
     "coffee-loader": "*",

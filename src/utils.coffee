@@ -58,7 +58,7 @@ getWordCls = (valid, action) ->
 
     continues: ->
       if @next?
-        return @next.word in " -\u2010" or @next.word[-1..] in '"„“”«'
+        return @next.word in "-\u2010" or (trimmed = @next.word.trim()) == "" or trimmed in '"„“”«'
 
     getNext: ->
       if @next?

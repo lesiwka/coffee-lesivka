@@ -89,6 +89,7 @@ data = [
   ["Див. деталі", "Dyv. detali"],
   ["в.о.", "v.o."],
   ["в «Атласі»", "v «Atlasi»"],
+  ["в  Європі", "v  Jewropi"],
 ]
 
 describe 'encode', ->

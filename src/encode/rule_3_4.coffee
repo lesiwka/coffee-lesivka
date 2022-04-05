@@ -1,10 +1,11 @@
+import {APOSTROPHES} from '../diacritics.coffee'
 import {applier, replacer, withLowerCase} from '../utils.coffee'
 
 ZERO_VOWEL = "\uee76"
 ZERO_CONSONANT = "\uff63"
 
 AFTER = ZERO_VOWEL + "AEYIOU"
-BEFORE = ZERO_CONSONANT + "БВГҐДЖЗЙКЛМНПРСТФХЦЧШЩ"
+BEFORE = ZERO_CONSONANT + "БВГҐДЖЗЙКЛМНПРСТФХЦЧШЩ" + APOSTROPHES
 
 
 addZeroLetters = (word) ->

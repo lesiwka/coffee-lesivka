@@ -5,7 +5,9 @@ ZERO_VOWEL = "\uee76"
 ZERO_CONSONANT = "\uff63"
 
 AFTER = ZERO_VOWEL + "AEYIOU"
-BEFORE = ZERO_CONSONANT + "БВГҐДЖЗЙКЛМНПРСТФХЦЧШЩ" + APOSTROPHES
+_BEFORE = "БВГҐДЖЗЙКЛМНПРСТФХЦЧШЩ"
+BEFORE = _BEFORE + ZERO_CONSONANT + APOSTROPHES
+BEFORE_NEXT = _BEFORE + "ЄЇЮЯ"
 
 
 addZeroLetters = (word) ->
@@ -15,7 +17,7 @@ addZeroLetters = (word) ->
     nextWord = word.getNext()
     if nextWord?
       if nextWord.word != ""
-        if nextWord.word[0].toUpperCase() not in BEFORE
+        if nextWord.word[0].toUpperCase() not in BEFORE_NEXT
           suffix = ZERO_VOWEL
 
   word.word = ZERO_VOWEL + word.word + suffix

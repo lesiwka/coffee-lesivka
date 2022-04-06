@@ -92,6 +92,7 @@ data = [
   ["в  Європі", "w  Jewropi"],
   ["в'язниця", "wjaznyća"],
   ["в ЄС", "w JeS"],
+  ["Та́врія", "Táwrija"],
 ]
 
 describe 'encode', ->

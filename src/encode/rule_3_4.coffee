@@ -1,4 +1,4 @@
-import {APOSTROPHES} from '../diacritics.coffee'
+import {ACUTE, APOSTROPHES} from '../diacritics.coffee'
 import {applier, replacer, withLowerCase} from '../utils.coffee'
 
 ZERO_VOWEL = "\uee76"
@@ -30,6 +30,8 @@ getConvert = ->
     for b in withLowerCase(BEFORE)
       data[a + "в" + b] = a + "w" + b
       data[a + "В" + b] = a + "W" + b
+      data[a + ACUTE + "в" + b] = a + ACUTE + "w" + b
+      data[a + ACUTE + "В" + b] = a + ACUTE + "W" + b
   repl = replacer(data)
 
   return (word) ->

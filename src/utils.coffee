@@ -154,7 +154,3 @@ export translator = (input, output) ->
 
 export withLowerCase = (line) ->
   return line + line.toLowerCase()
-
-
-export repeat = (s, n) ->
-  return new Array(n + 1).join(s)

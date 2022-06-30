@@ -1,4 +1,5 @@
 assert = require('assert')
+fs = require('fs')
 itParam = require('mocha-param')
 
 lesiwka = require('../dist/lesiwka.node.js')
@@ -63,9 +64,9 @@ data = [
   ["\u2019пір\u2019я\u2019", '\u2019pirja\u2019'],
   ["'м'яч'", "'mjač'"],
   ["'", "'"],
-  ['сыр', 'сыр'],
+#  ['сыр', 'сыр'],
   ['Є ', 'Je '],
-  ['Ь', ''],
+#  ['Ь', ''],
   ['йі', 'ji'],
   ["передзвонити", "pereƶvonyty"],
   ["передзимовий", "peredzymovyj"],
@@ -93,8 +94,50 @@ data = [
   ["в'язниця", "wjaznyća"],
   ["в ЄС", "w JeS"],
   ["Та́врія", "Táwrija"],
+  [
+    (
+      "Якось в дні передзимові, "
+      "Захотілось вовку крові. "
+      "Кров проллється, задзюрчить... "
+      "Дзиґа-хвіст не вгомониться, "
+      "П'яний ніс, як те бджільництво, "
+      "На обличчі аж дзижчить."
+    ),
+    (
+      "Jakoś w dni peredzymovi, "
+      "Zaxotiloś vowku krovi. "
+      "Krow prolĺet́śa, zaƶ́určyt́... "
+      "Ƶyga-xvist ne whomonyt́śa, "
+      "Pjanyj nis, jak te bđiĺnyctvo, "
+      "Na oblyčči až ƶyžčyt́."
+    )
+  ],
+  ["вгоджати", "whođaty"],
+  ["в'язати", "wjazaty"],
+  ["вв'язатися", "wwjazatyśa"],
+  ["барвний", "barwnyj"],
+  ["Щастя", "Ščast́a"],
+  ["вщухати", "wščuxaty"],
+  ["чіпляються", "čipĺajut́śa"],
+  ["сім'єю", "simjeju"],
+  ["Я обізвуся до них", "Ja obizvuśa do nyx"],
+  ["Є ЄС", "Je JeS"],
 ]
 
 describe 'encode', ->
   itParam '"${value[0]}" should be converted to "${value[1]}"', data, (value) ->
     assert.equal lesiwka.encode(value[0]), value[1]
+
+describe 'encode_validate', ->
+  it 'should not contain cyrillic characters in the output', (done) ->
+    abetka = 'абвгґдеєжзиіїйклмнопрстуфхцчшщьюя'
+    abetka += abetka.toUpperCase()
+
+    source = fs.readFileSync(__dirname + '/lisova.txt', 'utf8')
+    text = lesiwka.encode(source)
+
+    for line in text.split('\n')
+      for cyr in abetka
+        assert.ok cyr not in line, "found '#{cyr}' in '#{line}'"
+
+    done()

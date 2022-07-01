@@ -1,6 +1,6 @@
-import {replacer, prep_data_title} from '../utils.coffee'
+import {replacer, prepDataTitle} from '../utils.coffee'
 
 IN = 'ŠČ'
 OUT = 'Щ'
 
-export convert = replacer(prep_data_title({"#{IN}": OUT}))
+export convert = replacer(prepDataTitle({"#{IN}": OUT}))

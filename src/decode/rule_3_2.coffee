@@ -1,8 +1,8 @@
-import {prep_data, replacer} from '../utils.coffee'
+import {prepData, replacer} from '../utils.coffee'
 
 TRANSLATE =
   'Đ': 'ДЖ'
   'Ƶ': 'ДЗ'
 
 
-export convert = replacer(prep_data(TRANSLATE))
+export convert = replacer(prepData(TRANSLATE))

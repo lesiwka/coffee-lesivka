@@ -12,6 +12,7 @@ import {convert as rule_1_7} from './decode/rule_1_7.coffee'
 import {convert as rule_2_2} from './decode/rule_2_2.coffee'
 import {convert as rule_3_1} from './decode/rule_3_1.coffee'
 import {convert as rule_3_2} from './decode/rule_3_2.coffee'
+import {convert as rule_3_4} from './decode/rule_3_4.coffee'
 
 ORDER = [
   preprocess,
@@ -25,10 +26,11 @@ ORDER = [
   rule_1_4,
   rule_1_5,
   rule_3_2,
+  rule_3_4,
   postprocess,
 ]
 
-LAT = 'ABCČDĐEFGHIJKLMNOPRSŠTUVXYZŽƵ' + ACUTE + CARON + 'ĆĹŃŔŚŹǴḰḾṔ'
+LAT = 'ABCČDĐEFGHIJKLMNOPRSŠTUVWXYZŽƵ' + ACUTE + CARON + 'ĆĹŃŔŚŹǴḰḾṔẂ'
 
 convert = applier(ORDER...)
 split = new RegExp("([^\\w#{withLowerCase(LAT)}]+)")

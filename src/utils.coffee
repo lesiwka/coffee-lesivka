@@ -13,10 +13,10 @@ export class Converter
 
 
 export applier = (funcs...) ->
-  return (text) ->
+  return (word) ->
     for func from funcs
-      text = func(text)
-    return text
+      word = func(word)
+    return word
 
 
 getWordCls = (valid, action) ->
@@ -24,24 +24,26 @@ getWordCls = (valid, action) ->
 
   class Word
     constructor: (@word='', @prev=null, @next=null) ->
+      @abbr = false
       if @prev?
-        @prev.setNext(@)
+        @prev.next = @
 
     toString: ->
       if not @check()
         return @word
 
+      orig = @word
       p = @getPrev()
       n = @getNext()
-      w = action(@word)
+      action(@)
 
-      if @isUpper() and (p? and p.check() and p.isUpper() or n? and n.check() and n.isUpper())
-        return w.toUpperCase()
+      if isUpper(orig) and (p? and p.check() and isUpper(p.word) or n? and n.check() and isUpper(n.word)) and not @abbr
+        return @word.toUpperCase()
 
-      if w and @isTitle()
-        return toTitleCase(w)
+      if @word and isTitle(orig)
+        return toTitleCase(@word)
 
-      return w
+      return @word
 
     check: ->
       checking = new Set(@word.toUpperCase())
@@ -50,38 +52,57 @@ getWordCls = (valid, action) ->
           checking.delete(c)
       return checking.size == 0
 
+    hasStop: ->
+      if @next?
+        return @next.word[0] == "."
+
+    continues: ->
+      if @next?
+        return @next.word in "-\u2010" or (trimmed = @next.word.trim()) == "" or trimmed in '"„“”«'
+
     getNext: ->
       if @next?
         if @next.check()
             return @next
-        @next = @next.getNext()
-        return @next
+        return @next.getNext()
       return null
 
     getPrev: ->
       if @prev?
         if @prev.check()
             return @prev
-        @prev = @prev.getPrev()
-        return @prev
+        return @prev.getPrev()
       return null
 
-    isUpper: ->
-      return @word.length > 0 and @word.toUpperCase() == @word
-
-    isTitle: ->
-      if @word.toLowerCase() == @word.toUpperCase()
-        return false
-
-      first = @word[0]
-      rest = @word[1..]
-      return first.toUpperCase() == first and rest.toLowerCase() == rest
-
-    setNext: (@next) ->
+    split: (separator) ->
+      return new WordSplit(@, separator)
 
   return Word
 
-export prep_data = (input, output) ->
+
+class WordSplit
+  constructor: (@word, separator) ->
+    @array = @word.word.split(separator)
+
+  join: (separator) ->
+    @word.word = @array.join(separator)
+    return @word
+
+
+isUpper = (text) ->
+  return text.length > 0 and text.toUpperCase() == text
+
+
+isTitle = (text) ->
+  if text.toLowerCase() == text.toUpperCase()
+    return false
+
+  first = text[0]
+  rest = text[1..]
+  return first.toUpperCase() == first and rest.toLowerCase() == rest
+
+
+export prepData = (input, output) ->
   data = {}
   if output?
     for k, i in input
@@ -96,8 +117,8 @@ export prep_data = (input, output) ->
   return data
 
 
-export prep_data_title = (input, output) ->
-  data = prep_data(input, output)
+export prepDataTitle = (input, output) ->
+  data = prepData(input, output)
 
   if output?
     for k, i in input
@@ -110,17 +131,17 @@ export prep_data_title = (input, output) ->
 
 
 export replacer = (data) ->
-  return (text) ->
+  return (word) ->
     for key, value of data
-      text = text.split(key).join(value)
-    return text
+      word = word.split(key).join(value)
+    return word
 
 
 str = (x) ->
   return x.toString()
 
 
-toTitleCase = (text) ->
+export toTitleCase = (text) ->
   return (t[0].toUpperCase() + t[1..] for t in text.toLowerCase().split(' ')).join(' ')
 
 
@@ -133,7 +154,3 @@ export translator = (input, output) ->
 
 export withLowerCase = (line) ->
   return line + line.toLowerCase()
-
-
-export repeat = (s, n) ->
-  return new Array(n + 1).join(s)

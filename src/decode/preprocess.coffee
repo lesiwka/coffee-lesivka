@@ -1,5 +1,5 @@
 import {ACUTE, CARON} from '../diacritics.coffee'
-import {prep_data, replacer} from '../utils.coffee'
+import {prepData, replacer} from '../utils.coffee'
 
 COMBININGS = {
   "C#{CARON}": 'Č',
@@ -18,4 +18,4 @@ COMBININGS = {
 }
 
 
-export convert = replacer(prep_data(COMBININGS))
+export convert = replacer(prepData(COMBININGS))

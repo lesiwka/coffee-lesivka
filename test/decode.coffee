@@ -1,12 +1,12 @@
 assert = require('assert')
 itParam = require('mocha-param')
 
-lesivka = require('../dist/lesivka.node.js')
+lesiwka = require('../dist/lesiwka.node.js')
 
 data = [
   ['akula', 'акула'],
   ['babak', 'бабак'],
-  ['vovk', 'вовк'],
+  ['vowk', 'вовк'],
   ['halka', 'галка'],
   ['gava', 'ґава'],
   ['dub', 'дуб'],
@@ -18,7 +18,7 @@ data = [
   ['kalyna', 'калина'],
   ['inšyj', 'інший'],
   ['yndyk', 'индик'],
-  ['lastivka', 'ластівка'],
+  ['lastiwka', 'ластівка'],
   ['jižak', 'їжак'],
   ['jorž', 'йорж'],
   ['kačka', 'качка'],
@@ -30,9 +30,9 @@ data = [
   ['ravlyk', 'равлик'],
   ['sobaka', 'собака'],
   ['tyhr', 'тигр'],
-  ['udav', 'удав'],
+  ['udaw', 'удав'],
   ['fretka', 'фретка'],
-  ['xovrax', 'ховрах'],
+  ['xowrax', 'ховрах'],
   ['cesarka', 'цесарка'],
   ['čajka', 'чайка'],
   ['špak', 'шпак'],
@@ -44,7 +44,7 @@ data = [
   ['d́atel', 'дятел'],
   ['đmiĺ', 'джміль'],
   ['geƶ́', 'ґедзь'],
-  ['hajivka', 'гаївка'],
+  ['hajiwka', 'гаївка'],
   ['objizd', "об'їзд"],
   ['praistota', 'праістота'],
   ['znaju', 'знаю'],
@@ -67,4 +67,4 @@ data = [
 
 describe 'decode', ->
   itParam '"${value[0]}" should be converted to "${value[1]}"', data, (value) ->
-    assert.equal lesivka.decode(value[0]), value[1]
+    assert.equal lesiwka.decode(value[0]), value[1]

@@ -122,6 +122,7 @@ data = [
   ["сім'єю", "simjeju"],
   ["Я обізвуся до них", "Ja obizvuśa do nyx"],
   ["Є ЄС", "Je JeS"],
+  ["портів.", "portiw."],
 ]
 
 describe 'encode', ->

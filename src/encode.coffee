@@ -303,7 +303,7 @@ apostrophe_pattern = (p) -> ///
 ///g
 
 ending_pattern = ///
-  (?=#{W}*[#{lower_cyr + vowels_lat + consonants_lat + w_lat}]|#{W}*$)
+  (?=[#{lower_cyr}w]|#{W}+[#{lower_cyr + vowels_lat + consonants_lat + w_lat}]|#{W}*$)
 ///
 
 acuted_pattern = (p) -> ///

@@ -125,6 +125,7 @@ data = [
   ["портів.", "portiw."],
   ["дивно_вдягнені", "dywno_wd́ahneni"],
   ["навʼязані", "nawjazani"],
+  ["ЄВРОНЕСТ", "JEWRONEST"],
 ]
 
 describe 'encode', ->

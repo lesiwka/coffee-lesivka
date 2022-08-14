@@ -310,12 +310,20 @@ acuted_pattern = (p) -> ///
   (?<=[#{consonants_cyr + sqcq_cyr}])#{p}
 ///g
 
-affricate_exclude_pattern = ///
+affricate_exclude_patterns = [
+    ///(?<=ме)д(?=заклад|захис)///gi,
+    ///(?<=(^|#{W})ро)д(?=зал)///gi,
+    ///(?<=(бу|загоро|ме|про))д(?=заг[іо]н)///gi,
+    ///(?<=(^|#{W})(вищеві|кінові|літві|ра|спецві))д(?=зна[кч])///g,
+    ///(?<=епі)д(?=зах[іо]д)///gi,
+    ///(?<=пі)д(?=жи[вw])///gi,
+]
+affricate_pattern = ///
   (?<=(^|#{W})пере)дз(?=вен|він|вон|ижч)
 ///gi
 affricate_replacer = (p, r1, r2) -> [
   ///
-    (?<!(^|#{W})(ві|на|о|пере|пі|пона|попі|пре|сере))д#{p}
+    (?<!(^|#{W})(ві|на|напере|неві|непі|о|опі|пере|пі|пона|попі|пре|сере))д#{p}
   ///gi,
   (match) -> if match[0] is "д" then r1 else r2
 ]
@@ -363,9 +371,13 @@ patterns = patterns.concat(
   [acuted_pattern(cyr), ACUTE + out] for [cyr, out] in zip(iotted_upper_cyr, iotted_upper_out)
 )
 
+affricate_exclude_patterns_replacer = (match) -> if match[0] is "д" then "d" else "D"
+patterns = patterns.concat(
+  [pattern, affricate_exclude_patterns_replacer] for pattern in affricate_exclude_patterns
+)
 patterns.push(
   [
-    affricate_exclude_pattern,
+    affricate_pattern,
     (match) -> if match[0] is "д" then "ƶ" else "Ƶ"
   ]
 )

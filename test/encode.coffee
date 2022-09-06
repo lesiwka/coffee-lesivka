@@ -144,6 +144,8 @@ data = [
   ["санепідзахід", "sanepidzaxid"],
   ["опідзолений", "opidzolenyj"],
   ["рослинопідживлювач", "roslynopidžywĺuvač"],
+  ["вт, вер 6", "vt, ver 6"],
+  ["второпати", "wtoropaty"],
 ]
 
 describe 'encode', ->

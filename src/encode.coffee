@@ -33,7 +33,10 @@ consonants_lower_lat = "bvdhgžzjklmnprstfxcčš"
 consonants_upper_lat = consonants_lower_lat.toUpperCase()
 consonants_lat = consonants_lower_lat + consonants_upper_lat
 
-soft_sign_cyr = "ьЬ"
+soft_sign_lower_cyr = "ь"
+soft_sign_upper_cyr = soft_sign_lower_cyr.toUpperCase()
+soft_sign_cyr = soft_sign_lower_cyr + soft_sign_upper_cyr
+
 soft_sign_lat = ACUTE.repeat(2)
 
 sqcq_lower_cyr = "щ"
@@ -46,7 +49,8 @@ sqcq_upper_lat = sqcq_lower_lat.toUpperCase()
 w_cyr = "вВ"
 w_lat = "wW"
 
-lower_cyr = vowels_lower_cyr + iotted_lower_cyr + consonants_lower_cyr + sqcq_lower_cyr
+lower_cyr = vowels_lower_cyr + iotted_lower_cyr + consonants_lower_cyr + soft_sign_lower_cyr + sqcq_lower_cyr
+upper_cyr = vowels_upper_cyr + iotted_upper_cyr + consonants_upper_cyr + soft_sign_upper_cyr + sqcq_upper_cyr
 all_cyr = vowels_cyr + iotted_cyr + consonants_cyr + soft_sign_cyr + sqcq_cyr
 
 abbr = [
@@ -238,14 +242,17 @@ w_pattern = (p) -> ///
   #{W}+[#{consonants_cyr + sqcq_cyr + iotted_cyr + consonants_lat}])
 ///g
 
+capital_pattern = (p1, p2) -> ///(?<=[#{p1}])#{p2}(?=#{W}*$)///g
+
 apostrophe_pattern = (p) -> ///
   (?<=[#{all_cyr + w_lat}])[#{APOSTROPHES}]#{p}
 ///g
-
+iotted_pattern = (p) -> ///
+  ((?<=(^|#{W}))|(?<=[#{vowels_cyr + iotted_cyr}]))#{p}
+///g
 ending_pattern = ///
   (?=[#{lower_cyr}w]|#{W}+[#{lower_cyr + vowels_lat + consonants_lat + w_lat}]|#{W}*$)
 ///
-
 acuted_pattern = (p) -> ///
   (?<=[#{consonants_cyr + sqcq_cyr}])#{p}
 ///g
@@ -282,6 +289,13 @@ patterns = patterns.concat(
   [///(?<=^|#{W})#{cyr}(?=#{W}|$)///, lat] for [cyr, lat] in abbr
 )
 
+patterns.push(
+  [capital_pattern(upper_cyr, sqcq_upper_cyr), sqcq_upper_lat]
+)
+patterns = patterns.concat(
+  [capital_pattern(vowels_upper_cyr + iotted_upper_cyr, cyr), iot_upper_cyr + out] for [cyr, out] in zip(iotted_upper_cyr, iotted_upper_out)
+)
+
 patterns = patterns.concat(
   [w_pattern(cyr), lat] for [cyr, lat] in zip(w_cyr, w_lat)
 )
@@ -301,7 +315,7 @@ patterns = patterns.concat(
 )
 
 patterns = patterns.concat(
-  [///#{cyr}#{ending_pattern.source}///g, iot_upper_cyr + out] for [cyr, out] in zip(iotted_upper_cyr, iotted_lower_out)
+  [///#{iotted_pattern(cyr).source + ending_pattern.source}///g, iot_upper_cyr + out] for [cyr, out] in zip(iotted_upper_cyr, iotted_lower_out)
 )
 
 patterns = patterns.concat(

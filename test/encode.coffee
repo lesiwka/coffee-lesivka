@@ -137,6 +137,7 @@ data = [
   ["будзагін", "budzahin"],
   ["загородзагін", "zahorodzahin"],
   ["продзагін", "prodzahin"],
+  ["студзагону", "studzahonu"],
   ["вищевідзначений", "vyščevidznačenyj"],
   ["кіновідзнака", "kinovidznaka"],
   ["літвідзнака", "litvidznaka"],

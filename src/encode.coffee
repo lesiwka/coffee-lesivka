@@ -359,7 +359,13 @@ table = table.concat(
   ]
 )
 
+pre_validate = (text) ->
+  return /[ґєіїҐЄІЇ]/.test(text) or not /[ёўъыэЁЎЪЫЭ]/.test(text)
+
 export encode = (text) ->
+  if not pre_validate(text)
+    return text
+
   result = text
 
   for [pattern, repl] in patterns

@@ -153,6 +153,8 @@ data = [
   ["БОРЩ", "BORŠČ"],
   ["ОТАКОЇ", "OTAKOJI"],
   ["літера Ы", "litera Ы"],
+  ["дзоти", "dzoty"],
+  ["ДЗ", "DZ"],
 ]
 
 describe 'encode', ->

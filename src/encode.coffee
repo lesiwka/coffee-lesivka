@@ -264,15 +264,16 @@ affricate_exclude_patterns = [
     ///(?<=(^|#{W})(вищеві|кінові|літві|ра|спецві))д(?=зна[кч])///g,
     ///(?<=епі)д(?=зах[іо]д)///gi,
     ///(?<=пі)д(?=жи[вw])///gi,
+    ///(?<=(^|#{W}))д(?=зо[cт])///gi,
 ]
 affricate_pattern = ///
   (?<=(^|#{W})пере)дз(?=вен|він|вон|ижч)
 ///gi
-affricate_replacer = (p, r1, r2) -> [
+affricate_replacer = (p, r1, r2, r3) -> [
   ///
     (?<!(^|#{W})(ві|на|напере|неві|непі|о|опі|пере|пі|пона|попі|пре|сере))д#{p}
   ///gi,
-  (match) -> if match[0] is "д" then r1 else r2
+  (match) -> if match is "д#{p}" then r1 else if match is "Д#{p}" then r2 else "D#{r3}"
 ]
 
 zip = () ->
@@ -337,8 +338,8 @@ patterns.push(
 )
 patterns = patterns.concat(
   [
-    affricate_replacer("ж", "đ", "Đ"),
-    affricate_replacer("з", "ƶ", "Ƶ"),
+    affricate_replacer("ж", "đ", "Đ", "Ž"),
+    affricate_replacer("з", "ƶ", "Ƶ", "Z"),
   ]
 )
 

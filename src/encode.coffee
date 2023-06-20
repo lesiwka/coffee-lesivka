@@ -21,15 +21,17 @@ iotted_upper_lat = iotted_lower_lat.toUpperCase()
 
 iot_lower_cyr = "й"
 iot_upper_cyr = iot_lower_cyr.toUpperCase()
+iot_cyr = iot_lower_cyr + iot_upper_cyr
 
 iot_lower_lat = "j"
 iot_upper_lat = iot_lower_lat.toUpperCase()
+iot_lat = iot_lower_lat + iot_upper_lat
 
-consonants_lower_cyr = "бвдгґжзйклмнпрстфхцчш"
+consonants_lower_cyr = "бвдгґжзклмнпрстфхцчш"
 consonants_upper_cyr = consonants_lower_cyr.toUpperCase()
 consonants_cyr = consonants_lower_cyr + consonants_upper_cyr
 
-consonants_lower_lat = "bvdhgžzjklmnprstfxcčš"
+consonants_lower_lat = "bvdhgžzklmnprstfxcčš"
 consonants_upper_lat = consonants_lower_lat.toUpperCase()
 consonants_lat = consonants_lower_lat + consonants_upper_lat
 
@@ -49,9 +51,9 @@ sqcq_upper_lat = sqcq_lower_lat.toUpperCase()
 w_cyr = "вВ"
 w_lat = "wW"
 
-lower_cyr = vowels_lower_cyr + iotted_lower_cyr + consonants_lower_cyr + soft_sign_lower_cyr + sqcq_lower_cyr
-upper_cyr = vowels_upper_cyr + iotted_upper_cyr + consonants_upper_cyr + soft_sign_upper_cyr + sqcq_upper_cyr
-all_cyr = vowels_cyr + iotted_cyr + consonants_cyr + soft_sign_cyr + sqcq_cyr
+lower_cyr = vowels_lower_cyr + iotted_lower_cyr + consonants_lower_cyr + iot_lower_cyr + soft_sign_lower_cyr + sqcq_lower_cyr
+upper_cyr = vowels_upper_cyr + iotted_upper_cyr + consonants_upper_cyr + iot_upper_cyr + soft_sign_upper_cyr + sqcq_upper_cyr
+all_cyr = lower_cyr + upper_cyr
 
 abbr = [
   ["ЄІБ", "JeIB"],
@@ -298,9 +300,9 @@ abbr_dot_pattern = ///
 
 w_pattern = (p) -> ///
   (?<=^|#{W}|[_#{vowels_cyr + iotted_cyr + w_cyr}])#{p}
-  (?=[#{consonants_cyr + sqcq_cyr}]|
+  (?=[#{consonants_cyr + iot_cyr + sqcq_cyr}]|
   [#{APOSTROPHES}]|#{W}*([#{DELIMITERS}](#{W}|$)|$)|
-  #{W}+[#{consonants_cyr + sqcq_cyr + iotted_cyr + consonants_lat}])
+  #{W}+[#{consonants_cyr + iot_cyr + sqcq_cyr + iotted_cyr + consonants_lat + iot_lat}])
 ///g
 
 capital_pattern = (p1, p2) -> ///(?<=[#{p1}])#{p2}(?=#{W}*$)///g
@@ -312,7 +314,7 @@ iotted_pattern = (p) -> ///
   ((?<=(^|#{W}))|(?<=[#{vowels_cyr + iotted_cyr}]))#{p}
 ///g
 ending_pattern = ///
-  (?=[#{lower_cyr}w]|#{W}+[#{lower_cyr + vowels_lat + consonants_lat + w_lat}]|#{W}*$)
+  (?=[#{lower_cyr}w]|#{W}+[#{lower_cyr + vowels_lat + consonants_lat + iot_lat + w_lat}]|#{W}*$)
 ///
 acuted_pattern = (p) -> ///
   (?<=[#{consonants_cyr + sqcq_cyr}])#{p}
@@ -405,8 +407,8 @@ patterns = patterns.concat(
 )
 
 table = zip(
-  vowels_cyr + consonants_cyr + soft_sign_cyr,
-  vowels_lat + consonants_lat + soft_sign_lat,
+  vowels_cyr + consonants_cyr + iot_cyr + soft_sign_cyr,
+  vowels_lat + consonants_lat + iot_lat + soft_sign_lat,
 )
 table = table.concat(
   [cyr, iot_lower_lat + lat] for [cyr, lat] in zip(iotted_lower_cyr, iotted_lower_lat)

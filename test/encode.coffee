@@ -155,6 +155,7 @@ data = [
   ["літера Ы", "litera Ы"],
   ["дзоти", "dzoty"],
   ["ДЗ", "DZ"],
+  ["майя", "majja"],
 ]
 
 describe 'encode', ->

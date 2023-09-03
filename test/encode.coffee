@@ -115,6 +115,7 @@ data = [
   ["вгоджати", "whođaty"],
   ["в'язати", "wjazaty"],
   ["вв'язатися", "wwjazatyśa"],
+  ["Вв'язатися", "Wwjazatyśa"],
   ["різнобарвний", "riznobarvnyj"],
   ["барв", "barv"],
   ["Щастя", "Ščast́a"],
@@ -156,6 +157,7 @@ data = [
   ["дзоти", "dzoty"],
   ["ДЗ", "DZ"],
   ["майя", "majja"],
+  ["вчинив Вчинок", "wčynyw Wčynok"],
 ]
 
 describe 'encode', ->

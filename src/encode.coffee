@@ -302,7 +302,7 @@ abbr_dot_pattern = ///
 
 w_pattern = (p) -> ///
   (?<=^|#{W}|[_#{vowels_cyr + iotted_cyr + w_cyr}])#{p}
-  (?=[#{consonants_cyr + iot_cyr + sqcq_cyr}]|
+  (?=[#{consonants_cyr + iot_cyr + sqcq_cyr + w_lat}]|
   [#{APOSTROPHES}]|#{W}*([#{DELIMITERS}](#{W}|$)|$)|
   #{W}+[#{consonants_cyr + iot_cyr + sqcq_cyr + iotted_cyr + consonants_lat + iot_lat}])
 ///g
